@@ -15,4 +15,5 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/callback', 'ExampleController@test');
+$router->post('/callback', 'ExampleController@savedata');
+$router->get('/getdata', 'ExampleController@getdata');

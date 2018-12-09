@@ -4,10 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Test;
+
 class ExampleController extends Controller
 {
-    public function test(Request $request)
+    public function savedata(Request $request)
     {
-        echo '<pre>'; var_dump($request->all()); echo '</pre>'; die();
+        $test = new Test;
+        $test->data = json_encode($request->all());
+        $test->save();
+        return response()->json(['success' => true]);
+    }
+
+    public function getdata(Request $request)
+    {
+        $tests = Test::all();
+        return response()->json(['success' => true, 'data' => $tests]);
     }
 }
